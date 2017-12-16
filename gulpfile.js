@@ -37,7 +37,6 @@ gulp.task("scripts", function() {
   return gulp.src("./js/*.js")
     .pipe(concat("main.js"))
     .pipe(gulp.dest("./dist/"))
-    // UGLIFY IS UGLY
     .pipe(rename({ suffix: ".min" }))
     .pipe(uglify())
     .pipe(gulp.dest("./dist/"))
