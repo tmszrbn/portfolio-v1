@@ -10,7 +10,7 @@ const imagemin = require("gulp-imagemin");
 const notify = require("gulp-notify");
 const rename = require("gulp-rename");
 const sass = require("gulp-sass");
-const uglify = require("gulp-uglify");
+const uglify = require("gulp-uglify-es").default;
 
 
 gulp.task("browsersync", function() {
@@ -25,23 +25,25 @@ gulp.task("styles", function () {
   return gulp.src("./scss/*.scss")
     .pipe(sass())
     .pipe(autoprefixer("last 2 versions"))
-    // .pipe(gulp.dest("dist"))
+    .pipe(gulp.dest("./dist/"))
     .pipe(cssnano())
-    .pipe(gulp.dest("dist"))
-    // .pipe(rename({suffix: ".min"}))
+    .pipe(rename({suffix: ".min"}))
+    .pipe(gulp.dest("./dist/"))
     .pipe(notify({message: "Styles task complete"}))
     .pipe(browsersync.reload({stream: true}));
 });
 
-gulp.task("scripts"), function () {
-  return gulp.src("./scripts/**/*.js")
+gulp.task("scripts", function() {
+  return gulp.src("./js/*.js")
     .pipe(concat("main.js"))
-    .pipe(gulp.dest("dist"))
-    .pipe(rename({suffix: ".min"}))
+    .pipe(gulp.dest("./dist/"))
+    // UGLIFY IS UGLY
+    .pipe(rename({ suffix: ".min" }))
     .pipe(uglify())
-    .pipe(gulp.dest("dist"))
-    .pipe(notify({message: "Scripts task complete"}));
-};
+    .pipe(gulp.dest("./dist/"))
+    .pipe(notify({ message: "Scripts task complete" }));
+});
+
 
 gulp.task("images", function () {
   return gulp.src("./src/images/**/*")
