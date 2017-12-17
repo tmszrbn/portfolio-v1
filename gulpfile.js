@@ -36,7 +36,7 @@ gulp.task(`styles`, function () {
 });
 
 gulp.task(`scripts`, function() {
-  return gulp.src([`./node_modules/gsap/TweenLite.js`, `./js/*.js`])
+  return gulp.src( `./js/*.js`)
     .pipe(plumber())
     .pipe(concat(`main.js`))
     .pipe(gulp.dest(`./dist/`))
