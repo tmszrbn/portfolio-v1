@@ -18,7 +18,8 @@ gulp.task(`browsersync`, function() {
   browsersync.init({
     server: {
       baseDir: `./`
-    }
+    },
+    browser: [`firefox-developer`]
   });
 });
 
@@ -31,9 +32,10 @@ gulp.task(`styles`, function () {
     .pipe(cssnano())
     .pipe(rename({suffix: `.min`}))
     .pipe(gulp.dest(`./dist/`))
-    .pipe(notify({message: `styles task completed`}))
-    .pipe(browsersync.reload({stream: true}));
+    .pipe(notify({message: `styles task completed`}));
 });
+
+
 
 gulp.task(`scripts`, function() {
   return gulp.src( `./js/*.js`)
@@ -51,7 +53,7 @@ gulp.task(`images`, function () {
   return gulp.src(`./src/images/**/*`)
     .pipe(plumber())
     .pipe(cache(imagemin({optimizationLevel: 3, progressive: true, interlaced: true})))
-    .pipe(gulp.dest(`dist`))
+    .pipe(gulp.dest(`dist/images`))
     .pipe(notify({message: `images task completed`}));
 });
 
@@ -67,7 +69,8 @@ gulp.task(`watch`, [`browsersync`], function () {
   gulp.watch(`js/*.js`, [`scripts`]);
   gulp.watch(`images/*`);
 
-  gulp.watch(`./*.html`).on(`change`, browsersync.reload);
+  gulp.watch([`./*.html`, `./dist/styles.css`, `./dist/main.js`, `./dist/images/**`]).on(`change`, browsersync.reload);
+  // gulp.watch(`./dist/**`).on(`change`, browsersync.reload);
 });
 
 gulp.task(`default`, [`clean`], function () {
