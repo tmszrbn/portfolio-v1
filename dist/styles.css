@@ -39,3 +39,63 @@ table {
 td, th {
   padding: 0;
   text-align: left; }
+
+/******
+***FONTS***
+******/
+h1 {
+  font-size: 50px; }
+
+h2 {
+  font-size: 42px; }
+
+h3 {
+  font-size: 34px; }
+
+hr {
+  font-size: 26px; }
+
+/******
+***LAYOUT***
+******/
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+
+header h1 {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content; }
+
+header h4 {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  letter-spacing: 9px; }
+
+nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  overflow: hidden; }
+  nav li {
+    padding: 10px;
+    width: 100%; }
+
+ul {
+  z-index: -1;
+  max-height: 0px; }
+
+button {
+  color: #000;
+  background: #fff;
+  margin: 5px;
+  border: 1px solid; }
