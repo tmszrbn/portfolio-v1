@@ -1,1 +1,6 @@
-
+// COLORS
+$colorA: #973608;
+$colorAl1: lighten($colorA, 10%);
+$colorAl2: lighten($colorA, 20%);
+$colorAd1: darken($colorA, 10%);
+$colorAd2: darken($colorA, 20%);

@@ -6,19 +6,23 @@
 ***FONTS***
 ******/
 h1 {
-  font-size: 20vw;
+  font-size: 50px
 }
 
 h2 {
-  font-size: 15vw;
+  font-size: 42px;
 }
 
 h3 {
-  font-size: 10vw;
+  font-size: 34px;
 }
 
 h4 {
-  font-size: 5vw;
+  font-size: 26px;
+}
+
+h5 {
+  font-size: 18px;
 }
 
 /******
@@ -29,12 +33,20 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: $colorAd2;
+  background: $colorA;
 }
 
 header {
 
+  & h1 {
+    font-size: 20vw;
+  }
+
   & h4 {
+    color: $colorAl2;
     letter-spacing: 4.6vw;
+    font-size: 5vw;
   }
 }
 
@@ -43,22 +55,53 @@ nav {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  z-index: -1;
   width: 100%;
   height: 0px;
+  border-bottom: 5px;
 
-  & a {
-    padding: 10px;
-    width: 100%;
-    border-bottom: 1px solid;
+}
+
+a {
+  padding: 10px;
+  width: 100%;
+  color: $colorAd2;
+border-bottom: 1px solid;
+  text-decoration: none;
+
+  &:last-child {
+    border-bottom: none
   }
 }
 
 button {
-  color: #000;
-  background: #fff;
-  margin: 5px;
+  color: $colorA;
+  background: $colorAd2;
+  // margin: 5px;
   padding: 5px 0;
-  border: 1px solid;
+  border: none;
   width: 100%;
+}
+
+main {
+  padding: 10px;
+  width: 100%;
+  background: $colorAl1;
+
+  & {
+    h4 {
+      color: $colorA;
+    }
+    p {
+      color: $colorAd1;
+    }
+
+}
+
+section {
+  padding-bottom: 10px;
+  }
+}
+
+footer {
+  min-height: 240px;
 }
