@@ -37,6 +37,16 @@ h5 {
     // transition: all 1s ease-in;
   }
 }
+.svg-logo {
+  height: 170px;
+  margin: auto;
+  // transition: all 1s ease-in;
+  // z-index: -1;
+  &:hover {
+    transform: scale(1.2);
+    // transition: all 1s ease-in;
+  }
+}
 
 /******
 ***LAYOUT***
@@ -115,10 +125,4 @@ body {
   &__title {
     width: 100%;
   }
-}
-.logo {
-  margin: 10px;
-  height: 100px;
-  width: auto;
-  justify-self: center;
 }

@@ -67,6 +67,13 @@ h5 {
     -webkit-transform: scale(1.2);
             transform: scale(1.2); }
 
+.svg-logo {
+  height: 170px;
+  margin: auto; }
+  .svg-logo:hover {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2); }
+
 /******
 ***LAYOUT***
 ******/
@@ -110,7 +117,7 @@ body {
   color: #973608;
   z-index: 1; }
 
-.navba__toggler {
+.navbar__toggler {
   display: none; }
 
 .links {
@@ -172,9 +179,3 @@ body {
     max-width: 400px; }
   .content__title {
     width: 100%; }
-
-.logo {
-  margin: 10px;
-  height: 100px;
-  width: auto;
-  justify-self: center; }

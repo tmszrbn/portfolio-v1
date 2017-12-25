@@ -1,0 +1,71 @@
+[33mcommit 09551f72244599cde9444249a0fc3588d37d09ca[m
+Author: wolnyludz <urbi90@gmail.com>
+Date:   Mon Dec 25 11:24:33 2017 +0100
+
+    .navbar - sticky, css transform, .content - flex, font-awesome
+
+[33mcommit 6364daeac95ba064838663a27fd9f170d17aacb9[m
+Author: wolnyludz <urbi90@gmail.com>
+Date:   Thu Dec 21 12:08:44 2017 +0100
+
+    deleted js
+
+[33mcommit 2bf55a1ad32a0bb61dd2aecdda254bb97975d590[m
+Author: wolnyludz <urbi90@gmail.com>
+Date:   Wed Dec 20 08:07:13 2017 +0100
+
+    navbar static to fixed and back
+
+[33mcommit a5b3455bf97e0e8f7140f25b53ca4a6fa82abf35[m
+Author: wolnyludz <urbi90@gmail.com>
+Date:   Tue Dec 19 14:56:01 2017 +0100
+
+    images folder made, scrollTo, colors
+
+[33mcommit 893d3531f30a4d39d00c3c21a7da627cf6f4fcea[m
+Author: wolnyludz <urbi90@gmail.com>
+Date:   Tue Dec 19 04:47:25 2017 +0100
+
+    change in html structure, responsive header fonts
+
+[33mcommit ec26f67cc0bd4b8f7de2fcc5d513d348c044f2de[m
+Author: wolnyludz <urbi90@gmail.com>
+Date:   Mon Dec 18 15:06:36 2017 +0100
+
+    ok, now browserSync really reloads everything
+
+[33mcommit ffad4138728cdbab09c0dd07bf5d349ecb12d435[m
+Author: wolnyludz <urbi90@gmail.com>
+Date:   Mon Dec 18 02:30:58 2017 +0100
+
+    toggle navigation with maxHeight
+
+[33mcommit 12caca382a40da944058670d18cb246c66472b6c[m
+Author: wolnyludz <urbi90@gmail.com>
+Date:   Sun Dec 17 23:51:06 2017 +0100
+
+    Don't bundle GSAP
+
+[33mcommit 0749e4a5beb8e0f459d0800b4c6c7984eec94c6a[m
+Author: wolnyludz <urbi90@gmail.com>
+Date:   Sun Dec 17 15:41:51 2017 +0100
+
+    gulpfile.js - concat gsap too
+
+[33mcommit ab398036a4c2a0ddfb81d55bae5b4b75fb55b5c7[m
+Author: wolnyludz <urbi90@gmail.com>
+Date:   Sat Dec 16 21:09:29 2017 +0100
+
+    init v2(not saved by accident) - styles and scripts debugged
+
+[33mcommit 8d1a4efcd41f5e819e800cee1bfdfe623bb02bf5[m
+Author: wolnyludz <urbi90@gmail.com>
+Date:   Sat Dec 16 20:46:55 2017 +0100
+
+    init v2 - styles and scripts debugged
+
+[33mcommit f5c3f11afe8c09a747ea5facb46156a31d75660b[m
+Author: wolnyludz <urbi90@gmail.com>
+Date:   Sat Dec 16 19:54:21 2017 +0100
+
+    init - gulp, basic structure
