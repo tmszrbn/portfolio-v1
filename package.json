@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "My portfolio website.",
   "main": "index.html",
+  "sasslintconfig": "./.sasslint.yml",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -27,6 +28,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "gulp-uglify": "^3.0.0",
-    "gulp-uglify-es": "^0.1.9"
+    "gulp-uglify-es": "^0.1.9",
+    "sass-lint": "^1.12.1"
   }
 }
