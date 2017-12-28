@@ -44,19 +44,19 @@ td, th {
 ***FONTS***
 ******/
 h1 {
-  font-size: 50px; }
+  font-size: 5em; }
 
 h2 {
-  font-size: 42px; }
+  font-size: 4.5em; }
 
 h3 {
-  font-size: 34px; }
+  font-size: 4em; }
 
 h4 {
-  font-size: 26px; }
+  font-size: 3.5em; }
 
 h5 {
-  font-size: 18px; }
+  font-size: 3em; }
 
 /******
 ***FONT-AWESOME***
@@ -64,13 +64,6 @@ h5 {
 .fa-9x {
   margin: 10px auto; }
   .fa-9x:hover {
-    -webkit-transform: scale(1.2);
-            transform: scale(1.2); }
-
-.svg-logo {
-  height: 170px;
-  margin: auto; }
-  .svg-logo:hover {
     -webkit-transform: scale(1.2);
             transform: scale(1.2); }
 
@@ -115,7 +108,8 @@ body {
   width: 100%;
   background: #361303;
   color: #973608;
-  z-index: 1; }
+  z-index: 1;
+  overflow: visible; }
 
 .navbar__toggler {
   display: none; }
@@ -125,7 +119,7 @@ body {
   display: -ms-flexbox;
   display: flex;
   max-width: 600px;
-  width: 100%;
+  width: 100vh;
   -ms-flex-pack: distribute;
       justify-content: space-around;
   overflow: hidden; }
@@ -136,6 +130,9 @@ body {
     text-decoration: none;
     -webkit-transition: all .3s ease-in;
     transition: all .3s ease-in; }
+    .links__item a {
+      color: inherit;
+      text-decoration: none; }
     @media screen and (min-width: 480px) {
       .links__item:hover {
         background: #973608;
@@ -179,3 +176,10 @@ body {
     max-width: 400px; }
   .content__title {
     width: 100%; }
+
+.svg-logo {
+  height: 170px;
+  margin: auto; }
+  .svg-logo:hover {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2); }

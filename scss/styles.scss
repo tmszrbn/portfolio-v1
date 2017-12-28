@@ -6,23 +6,23 @@
 ***FONTS***
 ******/
 h1 {
-  font-size: 50px
+  font-size: 5em
 }
 
 h2 {
-  font-size: 42px;
+  font-size: 4.5em;
 }
 
 h3 {
-  font-size: 34px;
+  font-size: 4em;
 }
 
 h4 {
-  font-size: 26px;
+  font-size: 3.5em;
 }
 
 h5 {
-  font-size: 18px;
+  font-size: 3em;
 }
 
 /******
@@ -30,21 +30,8 @@ h5 {
 ******/
 .fa-9x {
   margin: 10px auto;
-  // transition: all 1s ease-in;
-  // z-index: -1;
   &:hover {
     transform: scale(1.2);
-    // transition: all 1s ease-in;
-  }
-}
-.svg-logo {
-  height: 170px;
-  margin: auto;
-  // transition: all 1s ease-in;
-  // z-index: -1;
-  &:hover {
-    transform: scale(1.2);
-    // transition: all 1s ease-in;
   }
 }
 
@@ -76,6 +63,7 @@ body {
   background: $colorAd2;
   color: $colorA;
   z-index: 1;
+  overflow: visible;
 }
 
 .navbar__toggler {
@@ -85,7 +73,7 @@ body {
 .links {
   display: flex;
   max-width: 600px;
-  width: 100%;
+  width: 100vh;
   justify-content: space-around;
   overflow: hidden;
   &__item {
@@ -94,6 +82,11 @@ body {
     color: $colorA;
     text-decoration: none;
     transition: all .3s ease-in;
+
+    & a {
+      color: inherit;
+      text-decoration: none;
+    }
 
     @media screen and (min-width: 480px) {
       &:hover {
@@ -124,5 +117,13 @@ body {
   }
   &__title {
     width: 100%;
+  }
+}
+
+.svg-logo {
+  height: 170px;
+  margin: auto;
+  &:hover {
+    transform: scale(1.2);
   }
 }
