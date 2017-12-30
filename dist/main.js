@@ -1,23 +1,33 @@
 const navItems = Array.from(document.querySelectorAll(`[href^="#"]`));
 let currItem;
+let pageH;
 
-function smoothScroll(currY, targetY, interval, step=10) {
-  if (currItem == targetY && step < Math.abs(currY-targetY)) {
+// speed=pageH for linear step
+function smoothScroll(currY, targetY, interval, speed=100) {
+  let distance = Math.abs(currY-targetY);
+  // computing step could be a function,
+  // so it could be used with more optional arguments than just speed 
+  let step = Math.ceil(distance/pageH*speed)+speed*.05;
+  if (currItem == targetY && step < distance) {
     if (currY > targetY+step) {
       step = -step;
     }
-    setTimeout (() => {
-      scrollBy(0, step);
-      smoothScroll(window.top.pageYOffset, targetY);
-    }, interval);
+    if ((currY + window.innerHeight + step) < pageH) {
+      setTimeout (() => {
+        scrollBy(0, step);
+
+        smoothScroll(window.top.pageYOffset, targetY, interval);
+      }, interval);
+    }
   }
 }
 
 function scroll(toItem, interval=20) {
   let currY = window.top.pageYOffset;
   const targetY = toItem.offsetTop - toItem.offsetHeight;
-  // cancel previous smoothScroll
   currItem = targetY;
+  pageH = document.body.clientHeight;
+
 
   smoothScroll(currY, targetY, interval);
 
