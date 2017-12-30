@@ -6,18 +6,22 @@ let pageH;
 function smoothScroll(currY, targetY, interval, speed=100) {
   let distance = Math.abs(currY-targetY);
   // computing step could be a function,
-  // so it could be used with more optional arguments than just speed 
+  // so it could be used with more optional arguments than just speed
   let step = Math.ceil(distance/pageH*speed)+speed*.05;
   if (currItem == targetY && step < distance) {
     if (currY > targetY+step) {
       step = -step;
     }
-    if ((currY + window.innerHeight + step) < pageH) {
+    let currBottomY = currY + window.innerHeight;
+    if ((currBottomY + step) < pageH) {
       setTimeout (() => {
         scrollBy(0, step);
 
         smoothScroll(window.top.pageYOffset, targetY, interval);
       }, interval);
+    }
+    else if (pageH-currBottomY < pageH-targetY) {
+      scrollBy(0, pageH-currBottomY);
     }
   }
 }

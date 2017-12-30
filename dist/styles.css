@@ -43,9 +43,6 @@ td, th {
 /******
 ***FONTS***
 ******/
-h1 {
-  font-size: 5em; }
-
 h2 {
   font-size: 4.5em; }
 
@@ -82,8 +79,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   color: #361303;
-  background: #973608;
-  width: 100%; }
+  background: #973608; }
 
 .jumbotron {
   -webkit-box-align: center;

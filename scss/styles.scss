@@ -6,7 +6,7 @@
 ***FONTS***
 ******/
 h1 {
-  font-size: 5em
+  // font-size: 5em
 }
 
 h2 {
@@ -45,11 +45,11 @@ body {
   align-items: center;
   color: $colorAd2;
   background: $colorA;
-  width: 100%;
+  // width: 100%;
 }
 
 .jumbotron {
-  // width: 100%;
+  // max-width: 100%;
   align-items: center;
 }
 
