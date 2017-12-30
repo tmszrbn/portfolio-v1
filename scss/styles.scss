@@ -49,7 +49,7 @@ body {
 }
 
 .jumbotron {
-  width: 100%;
+  // width: 100%;
   align-items: center;
 }
 
@@ -73,7 +73,7 @@ body {
 .links {
   display: flex;
   max-width: 600px;
-  width: 100vh;
+  width: 100vw;
   justify-content: space-around;
   overflow: hidden;
   &__item {
@@ -88,6 +88,14 @@ body {
       text-decoration: none;
     }
 
+    @media screen and (max-width: 479px) {
+      &:active {
+        background: $colorA;
+        color: $colorAd2;
+        transform: scale(1.2);
+        transition: all .1s ease-in;
+      }
+    }
     @media screen and (min-width: 480px) {
       &:hover {
         background: $colorA;
