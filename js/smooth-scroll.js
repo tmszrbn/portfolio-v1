@@ -1,5 +1,3 @@
-const navItems = Array.from(document.querySelectorAll(`[href^="#"]`));
-
 let currItem; // must be global so the recursion in smoothScroll will stop when scroll() called while running
 
 function smoothScroll(targetY, pageH, speed=100) {
@@ -31,20 +29,8 @@ function smoothScroll(targetY, pageH, speed=100) {
 // prepares and runs the scrolling
 function scroll(toItem) {
   const targetY = toItem.offsetTop - toItem.offsetHeight;
-  // sets global property to stop the recursion if scroll() called again
-  currItem = targetY;
+  currItem = targetY; // sets global property to stop the recursion if scroll() called again
   let pageH = document.body.clientHeight;
 
   smoothScroll(targetY, pageH);
-
 }
-
-// TODO move to main.js, concat with navItems.map in scrollspy.js
-navItems.map(item => {
-  // add onclick event to all navigation links
-  item.onclick = function (event) {
-    event.preventDefault();
-    const itemTarget = document.getElementById(item.getAttribute(`href`).slice(1));
-    scroll(itemTarget, );
-  };
-});
