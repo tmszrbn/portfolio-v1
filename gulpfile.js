@@ -38,7 +38,7 @@ gulp.task(`styles`, function () {
 
 
 gulp.task(`scripts`, function() {
-  return gulp.src( [`./js/smooth-scroll.js`, `./js/main.js`])
+  return gulp.src( [`./js/smooth-scroll.js`, `./js/run.js`])
     .pipe(plumber())
     .pipe(concat(`main.js`))
     .pipe(gulp.dest(`./dist/`))
