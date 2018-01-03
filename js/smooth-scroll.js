@@ -3,7 +3,7 @@ let currItem;
 let pageH;
 
 // speed=pageH for linear step
-function smoothScroll(currY, targetY, interval, speed=100) {
+function smoothScroll(currY, targetY, speed=100) {
   let distance = Math.abs(currY-targetY);
   // computing step could be a function,
   // so it could be used with more optional arguments than just speed
@@ -14,11 +14,11 @@ function smoothScroll(currY, targetY, interval, speed=100) {
     }
     let currBottomY = currY + window.innerHeight;
     if ((currBottomY + step) < pageH) {
-      setTimeout (() => {
+      requestAnimationFrame (() => {
         scrollBy(0, step);
 
-        smoothScroll(window.top.pageYOffset, targetY, interval);
-      }, interval);
+        smoothScroll(window.top.pageYOffset, targetY);
+      });
     }
     else if (pageH-currBottomY < pageH-targetY) {
       scrollBy(0, pageH-currBottomY);
@@ -26,14 +26,14 @@ function smoothScroll(currY, targetY, interval, speed=100) {
   }
 }
 
-function scroll(toItem, interval=20) {
+function scroll(toItem) {
   let currY = window.top.pageYOffset;
   const targetY = toItem.offsetTop - toItem.offsetHeight;
   currItem = targetY;
   pageH = document.body.clientHeight;
 
 
-  smoothScroll(currY, targetY, interval);
+  smoothScroll(currY, targetY);
 
 }
 
