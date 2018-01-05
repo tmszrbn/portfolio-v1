@@ -1,4 +1,9 @@
 const navItems = Array.from(document.querySelectorAll(`[href^="#"]`));
+let currentScroll;
+
+window.addEventListener(`scroll`, function (e) {
+  currentScroll = e.pageY;
+}
 
 navItems.map(item => {
   // add smoothScroll to onclick event to all navigation links
