@@ -89,12 +89,6 @@ body {
       -ms-flex-align: center;
           align-items: center; }
 
-.navbar {
-  overflow: visible; }
-
-.navbar__toggler {
-  display: none; }
-
 .links {
   width: 100%;
   display: -webkit-box;
@@ -128,7 +122,8 @@ body {
     color: #973608;
     text-decoration: none;
     -webkit-transition: all .3s ease-in;
-    transition: all .3s ease-in; }
+    transition: all .3s ease-in;
+    cursor: pointer; }
     .links__item a {
       color: inherit;
       text-decoration: none; }

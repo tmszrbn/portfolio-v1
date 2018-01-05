@@ -51,15 +51,7 @@ body {
 .jumbotron {
   // max-width: 100%;
   align-items: center;
-}
-
-.navbar {
-  overflow: visible;
-}
-
-.navbar__toggler {
-  display: none;
-}
+};
 
 .links {
   width: 100%;
@@ -86,6 +78,7 @@ body {
     color: $colorA;
     text-decoration: none;
     transition: all .3s ease-in;
+    cursor: pointer;
 
     & a {
       color: inherit;
