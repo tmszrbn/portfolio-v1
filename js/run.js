@@ -1,13 +1,18 @@
 const navItems = Array.from(document.querySelectorAll(`[href^="#"]`));
 let scrollEvent;
+const targets = [];
 
 navItems.map(item => {
   // add smoothScroll to onclick event to all navigation links
+  const itemTargetId = item.getAttribute(`href`);
+  const itemTarget = document.querySelector(itemTargetId);
   item.onclick = function (event) {
+    // console.log('clicked');
     event.preventDefault();
-    const itemTarget = document.getElementById(item.getAttribute(`href`).slice(1));
-    scroll(itemTarget);
+    scroll(itemTarget, document.body.offsetHeight);
   };
+  console.log(itemTarget);
+  targets.push([itemTarget, item]);
 });
 
 window.addEventListener(`scroll`, (e) => {

@@ -1,3 +1,24 @@
+const navItems = Array.from(document.querySelectorAll(`[href^="#"]`));
+let scrollEvent;
+const targets = [];
+
+navItems.map(item => {
+  // add smoothScroll to onclick event to all navigation links
+  const itemTargetId = item.getAttribute(`href`);
+  const itemTarget = document.querySelector(itemTargetId);
+  item.onclick = function (event) {
+    // console.log('clicked');
+    event.preventDefault();
+    scroll(itemTarget, document.body.offsetHeight);
+  };
+  console.log(itemTarget);
+  targets.push([itemTarget, item]);
+});
+
+window.addEventListener(`scroll`, (e) => {
+  scrollEvent = e;
+});
+
 /*global scrollEvent*/
 let currItem; // must be global so the recursion in smoothScroll will stop when scroll() called while running
 
@@ -36,18 +57,27 @@ function scroll(toItem) {
   smoothScroll(targetY, pageH);
 }
 
-const navItems = Array.from(document.querySelectorAll(`[href^="#"]`));
-let scrollEvent;
+/*global scrollEvent navItems targets*/
 
-navItems.map(item => {
-  // add smoothScroll to onclick event to all navigation links
-  item.onclick = function (event) {
-    event.preventDefault();
-    const itemTarget = document.getElementById(item.getAttribute(`href`).slice(1));
-    scroll(itemTarget);
-  };
-});
+const scrollspy = () => {
+  let scrollY = scrollEvent ? scrollEvent.pageY : 0;
+  let active;
 
-window.addEventListener(`scroll`, (e) => {
-  scrollEvent = e;
-});
+  if (scrollY + window.innerHeight >= document.body.offsetHeight - 10) {
+    active = navItems[navItems.length - 1];
+  }
+  else {
+    for (let target of targets) {
+      if (target[0].parentElement.getBoundingClientRect().top < scrollY && target[0].parentElement.getBoundingClientRect().bottom > scrollY) {
+        active = target[1];
+      }
+    }
+  }
+  // TODO give active active class and remove it from the old active!!!
+  active ? active.style.color = `red` : null;
+
+};
+
+setInterval(() => {
+  scrollspy();
+  console.log('interval');}, 200)
