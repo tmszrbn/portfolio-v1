@@ -1,8 +1,8 @@
 const navItems = Array.from(document.querySelectorAll(`[href^="#"]`));
-let currentScroll;
+let scrollEvent;
 
 window.addEventListener(`scroll`, function (e) {
-  currentScroll = e.pageY;
+  scrollEvent = e;
 }
 
 navItems.map(item => {

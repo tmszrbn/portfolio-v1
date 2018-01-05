@@ -1,7 +1,8 @@
-/*global currentScroll*/
+/*global scrollEvent*/
 let currItem; // must be global so the recursion in smoothScroll will stop when scroll() called while running
 
 function smoothScroll(targetY, pageH, speed=100) {
+  const currentScroll = scrollEvent.pageY;
   const distance = Math.abs(currentScroll-targetY);
   // computing step could be a function,
   // so it could be used with more optional arguments than just speed
