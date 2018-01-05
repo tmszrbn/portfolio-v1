@@ -1,17 +1,18 @@
+/*global scrollEvent*/
 let currItem; // must be global so the recursion in smoothScroll will stop when scroll() called while running
 
 function smoothScroll(targetY, pageH, speed=100) {
-  const currY = window.top.pageYOffset;
-  const distance = Math.abs(currY-targetY);
+  const currentScroll = (scrollEvent) ? scrollEvent.pageY : 0;
+  const distance = Math.abs(currentScroll-targetY);
   // computing step could be a function,
   // so it could be used with more optional arguments than just speed
   let step = Math.ceil(distance/pageH*speed)+speed*.05;
   // stop recursion if scroll() called again
   if (currItem == targetY && step < distance) {
-    if (currY > targetY+step) {
+    if (currentScroll > targetY+step) {
       step = -step;
     }
-    const currBottomY = currY + window.innerHeight;
+    const currBottomY = currentScroll + window.innerHeight;
     // scrollBy(0, step) if view still in the page
     if ((currBottomY + step) < pageH) {
       requestAnimationFrame (() => {
@@ -34,14 +35,3 @@ function scroll(toItem) {
 
   smoothScroll(targetY, pageH);
 }
-
-const navItems = Array.from(document.querySelectorAll(`[href^="#"]`));
-
-navItems.map(item => {
-  // add smoothScroll to onclick event to all navigation links
-  item.onclick = function (event) {
-    event.preventDefault();
-    const itemTarget = document.getElementById(item.getAttribute(`href`).slice(1));
-    scroll(itemTarget);
-  };
-});
