@@ -6,7 +6,7 @@
 ***FONTS***
 ******/
 h1 {
-  // font-size: 5em
+  font-size: 5em
 }
 
 h2 {
@@ -54,15 +54,6 @@ body {
 }
 
 .navbar {
-  display: flex;
-  flex-direction: row;
-  position: sticky;
-  justify-content: center;
-  top: 0px;
-  width: 100%;
-  background: $colorAd2;
-  color: $colorA;
-  z-index: 1;
   overflow: visible;
 }
 
@@ -71,11 +62,24 @@ body {
 }
 
 .links {
+  width: 100%;
   display: flex;
-  max-width: 600px;
-  width: 100vw;
-  justify-content: space-around;
-  overflow: hidden;
+  flex-direction: row;
+  position: sticky;
+  justify-content: center;
+  top: 0px;
+  background: $colorAd2;
+  color: $colorA;
+  z-index: 1;
+
+
+  &__list {
+    display: flex;
+    max-width: 600px;
+    width: 100vw;
+    justify-content: space-around;
+    overflow: hidden;
+  }
   &__item {
     padding: 20px 10px;
     border-radius: 50px;

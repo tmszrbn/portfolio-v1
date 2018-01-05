@@ -43,6 +43,9 @@ td, th {
 /******
 ***FONTS***
 ******/
+h1 {
+  font-size: 5em; }
+
 h2 {
   font-size: 4.5em; }
 
@@ -87,6 +90,13 @@ body {
           align-items: center; }
 
 .navbar {
+  overflow: visible; }
+
+.navbar__toggler {
+  display: none; }
+
+.links {
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -100,24 +110,18 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
   top: 0px;
-  width: 100%;
   background: #361303;
   color: #973608;
-  z-index: 1;
-  overflow: visible; }
-
-.navbar__toggler {
-  display: none; }
-
-.links {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  max-width: 600px;
-  width: 100vw;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  overflow: hidden; }
+  z-index: 1; }
+  .links__list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    max-width: 600px;
+    width: 100vw;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    overflow: hidden; }
   .links__item {
     padding: 20px 10px;
     border-radius: 50px;
