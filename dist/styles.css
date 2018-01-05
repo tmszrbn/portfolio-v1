@@ -136,7 +136,7 @@ body {
         -webkit-transition: all .1s ease-in;
         transition: all .1s ease-in; } }
     @media screen and (min-width: 480px) {
-      .links__item:hover {
+      .links__item:hover, .links__item:focus {
         background: #973608;
         color: #361303;
         -webkit-transform: scale(1.5);

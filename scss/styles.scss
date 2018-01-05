@@ -94,7 +94,7 @@ body {
       }
     }
     @media screen and (min-width: 480px) {
-      &:hover {
+      &:hover, &:focus {
         background: $colorA;
         color: $colorAd2;
         transform: scale(1.5);
