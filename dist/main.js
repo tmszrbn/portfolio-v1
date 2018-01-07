@@ -1,34 +1,49 @@
 const navItems = Array.from(document.querySelectorAll(`[href^="#"]`));
 let scrollEvent;
+let lastWidth;
 const targets = [];
 
-navItems.map(item => {
-  // add smoothScroll to onclick event to all navigation links
-  const itemTargetId = item.getAttribute(`href`);
-  const itemTarget = document.querySelector(itemTargetId);
-  item.onclick = function (event) {
-    // console.log('clicked');
-    event.preventDefault();
-    scroll(itemTarget, document.body.offsetHeight);
-  };
-  console.log(itemTarget);
-  targets.push([itemTarget, item]);
-});
+const mapping = () => {
+  navItems.map(item => {
+    // add smoothScroll to onclick event to all navigation links
+    const itemTargetId = item.getAttribute(`href`);
+    const itemTarget = document.querySelector(itemTargetId); // h4 element
+    const targetY = itemTarget.offsetTop - itemTarget.offsetHeight;
+    const targetBottomY = itemTarget.offsetTop + itemTarget.parentElement.offsetHeight;
+
+    item.onclick = function (event) {
+      // console.log('clicked');
+      event.preventDefault();
+      scrollToTarget(targetY, document.body.offsetHeight);
+    };
+    // make an array of [correspondig navItem, top and bottom of the element]
+    targets.push([itemTarget, targetY, targetBottomY]);
+    console.log(targets);
+  });
+};
 
 window.addEventListener(`scroll`, (e) => {
   scrollEvent = e;
 });
 
-/*global scrollEvent*/
-let currItem; // must be global so the recursion in smoothScroll will stop when scroll() called while running
+const widthInterval = setInterval(() => {
+  if (lastWidth != document.body.offsetWidth) {
+    console.log('mapping');
+    lastWidth = document.body.offsetWidth;
+    mapping();
+  }
+}, 1500);
 
-function smoothScroll(targetY, pageH, speed=100) {
+/*global scrollEvent*/
+let currItem; // must be global so the recursion in smoothScroll will stop when scrollToTarget() called while running
+
+const smoothScroll = (targetY, pageH, speed=100) => {
   const currentScroll = (scrollEvent) ? scrollEvent.pageY : 0;
   const distance = Math.abs(currentScroll-targetY);
   // computing step could be a function,
   // so it could be used with more optional arguments than just speed
   let step = Math.ceil(distance/pageH*speed)+speed*.05;
-  // stop recursion if scroll() called again
+  // stop recursion if scrollToTarget() called again
   if (currItem == targetY && step < distance) {
     if (currentScroll > targetY+step) {
       step = -step;
@@ -49,35 +64,9 @@ function smoothScroll(targetY, pageH, speed=100) {
 }
 
 // prepares and runs the scrolling
-function scroll(toItem) {
-  const targetY = toItem.offsetTop - toItem.offsetHeight;
-  currItem = targetY; // sets global property to stop the recursion if scroll() called again
-  let pageH = document.body.clientHeight;
-
+const scrollToTarget = (targetY, pageH) => {
+  currItem = targetY; // sets global property to stop the recursion if scrollToTarget() called again
   smoothScroll(targetY, pageH);
-}
-
-/*global scrollEvent navItems targets*/
-
-const scrollspy = () => {
-  let scrollY = scrollEvent ? scrollEvent.pageY : 0;
-  let active;
-
-  if (scrollY + window.innerHeight >= document.body.offsetHeight - 10) {
-    active = navItems[navItems.length - 1];
-  }
-  else {
-    for (let target of targets) {
-      if (target[0].parentElement.getBoundingClientRect().top < scrollY && target[0].parentElement.getBoundingClientRect().bottom > scrollY) {
-        active = target[1];
-      }
-    }
-  }
-  // TODO give active active class and remove it from the old active!!!
-  active ? active.style.color = `red` : null;
-
 };
 
-setInterval(() => {
-  scrollspy();
-  console.log('interval');}, 200)
+/*global scrollEvent navItems targets*/
