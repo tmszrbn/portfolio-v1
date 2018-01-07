@@ -1,15 +1,15 @@
 const navItems = Array.from(document.querySelectorAll(`[href^="#"]`));
 let scrollEvent;
-let lastWidth;
-const targets = [];
+let lastBodyHeight;
 
 const mapping = () => {
+  const targets = [];
   navItems.map(item => {
     // add smoothScroll to onclick event to all navigation links
     const itemTargetId = item.getAttribute(`href`);
     const itemTarget = document.querySelector(itemTargetId); // h4 element
-    const targetY = itemTarget.offsetTop - itemTarget.offsetHeight;
-    const targetBottomY = itemTarget.offsetTop + itemTarget.parentElement.offsetHeight;
+    const targetY = itemTarget.offsetTop;
+    const targetBottomY = itemTarget.parentElement.offsetTop + itemTarget.parentElement.offsetHeight;
 
     item.onclick = function (event) {
       // console.log('clicked');
@@ -18,8 +18,8 @@ const mapping = () => {
     };
     // make an array of [correspondig navItem, top and bottom of the element]
     targets.push([itemTarget, targetY, targetBottomY]);
-    console.log(targets);
   });
+  console.log(targets);
 };
 
 window.addEventListener(`scroll`, (e) => {
@@ -27,9 +27,9 @@ window.addEventListener(`scroll`, (e) => {
 });
 
 const widthInterval = setInterval(() => {
-  if (lastWidth != document.body.offsetWidth) {
+  if (lastBodyHeight != document.body.offsetHeight) {
     console.log('mapping');
-    lastWidth = document.body.offsetWidth;
+    lastBodyHeight = document.body.offsetHeight;
     mapping();
   }
 }, 1500);
@@ -42,7 +42,7 @@ const smoothScroll = (targetY, pageH, speed=100) => {
   const distance = Math.abs(currentScroll-targetY);
   // computing step could be a function,
   // so it could be used with more optional arguments than just speed
-  let step = Math.ceil(distance/pageH*speed)+speed*.05;
+  let step = Math.ceil(distance/pageH*speed)+speed*.04;
   // stop recursion if scrollToTarget() called again
   if (currItem == targetY && step < distance) {
     if (currentScroll > targetY+step) {

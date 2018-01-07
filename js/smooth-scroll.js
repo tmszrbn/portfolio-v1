@@ -6,7 +6,7 @@ const smoothScroll = (targetY, pageH, speed=100) => {
   const distance = Math.abs(currentScroll-targetY);
   // computing step could be a function,
   // so it could be used with more optional arguments than just speed
-  let step = Math.ceil(distance/pageH*speed)+speed*.05;
+  let step = Math.ceil(distance/pageH*speed)+speed*.04;
   // stop recursion if scrollToTarget() called again
   if (currItem == targetY && step < distance) {
     if (currentScroll > targetY+step) {
