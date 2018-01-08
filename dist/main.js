@@ -1,7 +1,9 @@
 const navItems = Array.from(document.querySelectorAll(`[href^="#"]`));
 let scrollEvent;
 let lastBodyHeight;
+let lastScroll;
 const targets = [];
+let navY;
 
 const mapping = () => {
   targets.length = 0;
@@ -20,9 +22,13 @@ const mapping = () => {
     // make an array of [navItem, corresponding top and bottom of the element]
     targets.push([item, targetY, targetBottomY]);
   });
-  console.log(targets);
+  navY = document.querySelector(`nav`).offsetTop;
 };
 
+window.addEventListener(`scroll`, (e) => {
+  scrollEvent = e; // has to be for smoothScroll
+  scrollspy(targets, e.pageY);
+});
 
 const widthInterval = setInterval(() => {
   if (lastBodyHeight != document.body.offsetHeight) {
@@ -30,12 +36,19 @@ const widthInterval = setInterval(() => {
     lastBodyHeight = document.body.offsetHeight;
     mapping();
   }
-}, 1500);
 
-window.addEventListener(`scroll`, (e) => {
-  scrollEvent = e; // has to be for smoothScroll
-  scrollspy(targets, e.pageY);
-});
+  const currScroll = scrollEvent ? scrollEvent.pageY : 0;
+  const elementToHide = document.querySelector(`nav`);
+  const navHideClass = `links--hidden`;
+  if (navY < currScroll) {
+    const navHidden = elementToHide.classList.contains(navHideClass);
+    scrollhide(elementToHide, lastScroll, currScroll, navHideClass, navHidden);
+    console.log(`check3`, currScroll, lastScroll);
+    lastScroll = currScroll;
+  } else if (elementToHide.classList.contains(navHideClass)) {
+    elementToHide.classList.remove(navHideClass)
+  }
+}, 500);
 
 /*global scrollEvent*/
 let currItem; // must be global so the recursion in smoothScroll will stop when scrollToTarget() called while running
@@ -94,4 +107,16 @@ const scrollspy = (targets, pageY) => {
     }
   }
   // console.log(active);
+};
+
+const scrollhide = (element, lastScroll, currentScroll, className, isHidden) => {
+  if (lastScroll != currentScroll) {
+    console.log(`check`);
+    if (isHidden) {
+      lastScroll > currentScroll ? element.classList.remove(className) : null;
+    }
+    else {
+      lastScroll < currentScroll ? element.classList.add(className) : null;
+    }
+  }
 };

@@ -63,6 +63,7 @@ body {
   background: $colorAd2;
   color: $colorA;
   z-index: 1;
+  transition: all .3s ease-in;
 
 
   &__list {
@@ -101,6 +102,10 @@ body {
         transition: all .5s ease-in;
       }
     }
+  }
+
+  &--hidden {
+    opacity: 0.5;
   }
 }
 .content {
