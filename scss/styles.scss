@@ -73,33 +73,30 @@ body {
     overflow: hidden;
   }
   &__item {
+    display: inline-block;
     color: $colorA;
     text-decoration: none;
     transition: all .3s ease-in;
     border-radius: 50px;
     cursor: pointer;
+    padding: 20px 10px;
+    width: 100%;
+    height: 100%;
+    color: inherit;
 
-    & a {
-      padding: 20px 10px;
-      display: inline-block;
-      width: 100%;
-      height: 100%;
-      color: inherit;
-      text-decoration: none;
+    &:hover, &:focus, &:active {
+      background: $colorA;
+      color: $colorAd2;
+      transform: scale(1.5);
+      transition: all .5s ease-in;
     }
 
-    @media screen and (max-width: 479px) {
-      &:active {
-        background: $colorA;
-        color: $colorAd2;
-        transform: scale(1.2);
-        transition: all .1s ease-in;
-      }
-    }
-    @media screen and (min-width: 480px) {
-      &:hover, &:focus {
-        background: $colorA;
-        color: $colorAd2;
+
+    &--active {
+      color: $colorAl1;
+      &:hover, &:focus, &:active {
+        background: $colorAd2;
+        color: $colorAl1;
         transform: scale(1.5);
         transition: all .5s ease-in;
       }

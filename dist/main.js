@@ -1,9 +1,10 @@
 const navItems = Array.from(document.querySelectorAll(`[href^="#"]`));
 let scrollEvent;
 let lastBodyHeight;
+const targets = [];
 
 const mapping = () => {
-  const targets = [];
+  targets.length = 0;
   navItems.map(item => {
     // add smoothScroll to onclick event to all navigation links
     const itemTargetId = item.getAttribute(`href`);
@@ -11,20 +12,17 @@ const mapping = () => {
     const targetY = itemTarget.offsetTop;
     const targetBottomY = itemTarget.parentElement.offsetTop + itemTarget.parentElement.offsetHeight;
 
-    item.onclick = function (event) {
+    item.addEventListener(`click`, (event) => {
       // console.log('clicked');
       event.preventDefault();
       scrollToTarget(targetY, document.body.offsetHeight);
-    };
-    // make an array of [correspondig navItem, top and bottom of the element]
-    targets.push([itemTarget, targetY, targetBottomY]);
+    });
+    // make an array of [navItem, corresponding top and bottom of the element]
+    targets.push([item, targetY, targetBottomY]);
   });
   console.log(targets);
 };
 
-window.addEventListener(`scroll`, (e) => {
-  scrollEvent = e;
-});
 
 const widthInterval = setInterval(() => {
   if (lastBodyHeight != document.body.offsetHeight) {
@@ -33,6 +31,11 @@ const widthInterval = setInterval(() => {
     mapping();
   }
 }, 1500);
+
+window.addEventListener(`scroll`, (e) => {
+  scrollEvent = e; // has to be for smoothScroll
+  scrollspy(targets, e.pageY);
+});
 
 /*global scrollEvent*/
 let currItem; // must be global so the recursion in smoothScroll will stop when scrollToTarget() called while running
@@ -70,3 +73,25 @@ const scrollToTarget = (targetY, pageH) => {
 };
 
 /*global scrollEvent navItems targets*/
+let active;
+const scrollspy = (targets, pageY) => {
+  if (pageY + innerHeight >= lastBodyHeight-10) {
+    active ? active.classList.remove(`links__item--active`) : null;
+    active = targets[targets.length-1][0];
+    active.classList.add(`links__item--active`);
+  } else {
+    for (let target of targets) {
+      if (active !== target[0]) {
+        if (target[1] < pageY) {
+          if (target[2] > pageY) {
+            active ? active.classList.remove(`links__item--active`) : null;
+            active = target[0];
+            active.classList.add(`links__item--active`);
+            break;
+          }
+        }
+      }
+    }
+  }
+  // console.log(active);
+};
