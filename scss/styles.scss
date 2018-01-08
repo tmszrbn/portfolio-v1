@@ -6,24 +6,13 @@
 ***FONTS***
 ******/
 h1 {
-  font-size: 5em
+  font-size: 5rem
 }
 
 h2 {
-  font-size: 4.5em;
+  font-size: 3.5rem;
 }
 
-h3 {
-  font-size: 4em;
-}
-
-h4 {
-  font-size: 3.5em;
-}
-
-h5 {
-  font-size: 3em;
-}
 
 /******
 ***FONT-AWESOME***
@@ -45,12 +34,16 @@ body {
   align-items: center;
   color: $colorAd2;
   background: $colorA;
-  // width: 100%;
 }
+footer {
+  color: $colorA;
+  background: $colorAd2;
+
+};
 
 .jumbotron {
-  // max-width: 100%;
   align-items: center;
+  font-size: 3.5rem;
 };
 
 .links {
@@ -89,7 +82,6 @@ body {
       background: $colorA;
       color: $colorAd2;
       transform: scale(1.5);
-      transition: all .5s ease-in;
     }
 
 
@@ -104,17 +96,26 @@ body {
     }
   }
 
-  &--hidden {
-    opacity: 0.5;
+  @media (max-width: 480px) {
+    &:active {
+      background: $colorA;
+      color: $colorAd2;
+      transform: scale(1.5);
+    }
+    &--hidden {
+      opacity: 0.3;
+    }
   }
 }
 .content {
+  line-height: 1.5rem;
   display: flex;
   flex-flow: row;
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
-  padding: 10px;
+  padding: 1rem;
+
   &__part {
     border: 5px solid $colorAd1;
     padding: 10px;
@@ -127,6 +128,7 @@ body {
   }
   &__title {
     width: 100%;
+    padding: 1.5rem 0 2rem;
   }
 }
 
@@ -136,4 +138,10 @@ body {
   &:hover {
     transform: scale(1.2);
   }
+}
+
+.contact {
+  text-decoration: none;
+  color: inherit;
+  padding-left: 0.5rem;
 }

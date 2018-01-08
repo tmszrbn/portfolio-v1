@@ -44,19 +44,10 @@ td, th {
 ***FONTS***
 ******/
 h1 {
-  font-size: 5em; }
+  font-size: 5rem; }
 
 h2 {
-  font-size: 4.5em; }
-
-h3 {
-  font-size: 4em; }
-
-h4 {
-  font-size: 3.5em; }
-
-h5 {
-  font-size: 3em; }
+  font-size: 3.5rem; }
 
 /******
 ***FONT-AWESOME***
@@ -84,10 +75,15 @@ body {
   color: #361303;
   background: #973608; }
 
+footer {
+  color: #973608;
+  background: #361303; }
+
 .jumbotron {
   -webkit-box-align: center;
       -ms-flex-align: center;
-          align-items: center; }
+          align-items: center;
+  font-size: 3.5rem; }
 
 .links {
   width: 100%;
@@ -134,9 +130,7 @@ body {
       background: #973608;
       color: #361303;
       -webkit-transform: scale(1.5);
-              transform: scale(1.5);
-      -webkit-transition: all .5s ease-in;
-      transition: all .5s ease-in; }
+              transform: scale(1.5); }
     .links__item--active {
       color: #c7470b; }
       .links__item--active:hover, .links__item--active:focus, .links__item--active:active {
@@ -146,10 +140,17 @@ body {
                 transform: scale(1.5);
         -webkit-transition: all .5s ease-in;
         transition: all .5s ease-in; }
-  .links--hidden {
-    opacity: 0.5; }
+  @media (max-width: 480px) {
+    .links:active {
+      background: #973608;
+      color: #361303;
+      -webkit-transform: scale(1.5);
+              transform: scale(1.5); }
+    .links--hidden {
+      opacity: 0.3; } }
 
 .content {
+  line-height: 1.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -163,7 +164,7 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
   width: 100%;
-  padding: 10px; }
+  padding: 1rem; }
   .content__part {
     border: 5px solid #672505;
     padding: 10px;
@@ -182,7 +183,8 @@ body {
             justify-content: center;
     max-width: 400px; }
   .content__title {
-    width: 100%; }
+    width: 100%;
+    padding: 1.5rem 0 2rem; }
 
 .svg-logo {
   height: 170px;
@@ -190,3 +192,8 @@ body {
   .svg-logo:hover {
     -webkit-transform: scale(1.2);
             transform: scale(1.2); }
+
+.contact {
+  text-decoration: none;
+  color: inherit;
+  padding-left: 0.5rem; }

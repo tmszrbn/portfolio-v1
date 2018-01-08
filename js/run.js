@@ -15,14 +15,13 @@ const mapping = () => {
     const targetBottomY = itemTarget.parentElement.offsetTop + itemTarget.parentElement.offsetHeight;
 
     item.addEventListener(`click`, (event) => {
-      // console.log('clicked');
       event.preventDefault();
       scrollToTarget(targetY, document.body.offsetHeight);
     });
     // make an array of [navItem, corresponding top and bottom of the element]
     targets.push([item, targetY, targetBottomY]);
   });
-  navY = document.querySelector(`nav`).offsetTop;
+  navY = document.querySelector(`header`).offsetHeight;
 };
 
 window.addEventListener(`scroll`, (e) => {
@@ -30,9 +29,9 @@ window.addEventListener(`scroll`, (e) => {
   scrollspy(targets, e.pageY);
 });
 
+
 const widthInterval = setInterval(() => {
   if (lastBodyHeight != document.body.offsetHeight) {
-    console.log('mapping');
     lastBodyHeight = document.body.offsetHeight;
     mapping();
   }
@@ -43,7 +42,6 @@ const widthInterval = setInterval(() => {
   if (navY < currScroll) {
     const navHidden = elementToHide.classList.contains(navHideClass);
     scrollhide(elementToHide, lastScroll, currScroll, navHideClass, navHidden);
-    console.log(`check3`, currScroll, lastScroll);
     lastScroll = currScroll;
   } else if (elementToHide.classList.contains(navHideClass)) {
     elementToHide.classList.remove(navHideClass)

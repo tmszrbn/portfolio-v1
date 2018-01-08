@@ -5,19 +5,19 @@ const scrollspy = (targets, pageY) => {
     active ? active.classList.remove(`links__item--active`) : null;
     active = targets[targets.length-1][0];
     active.classList.add(`links__item--active`);
-  } else {
+  }
+  else if (pageY > document.querySelector(`header`).offsetHeight){
     for (let target of targets) {
-      if (active !== target[0]) {
-        if (target[1] < pageY) {
-          if (target[2] > pageY) {
-            active ? active.classList.remove(`links__item--active`) : null;
-            active = target[0];
-            active.classList.add(`links__item--active`);
-            break;
-          }
+      if (!target[0].classList.contains(`links__item--active`)) {
+        if (target[1] < pageY && target[2] > pageY) {
+          active ? active.classList.remove(`links__item--active`) : null;
+          active = target[0];
+          active.classList.add(`links__item--active`);
+          break;
         }
       }
     }
+  } else if (active) {
+    active.classList.remove(`links__item--active`);
   }
-  // console.log(active);
 };
