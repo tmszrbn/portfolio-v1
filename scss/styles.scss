@@ -108,6 +108,9 @@ footer {
         }
       }
     }
+    &--defocused:focus {
+      transform: scale(1);
+    }
   }
 
   @media (max-width: 480px) {

@@ -149,6 +149,9 @@ footer {
         .navbar__item--active:active {
           background: #361303;
           color: #c7470b; } }
+    .navbar__item--defocused:focus {
+      -webkit-transform: scale(1);
+              transform: scale(1); }
   @media (max-width: 480px) {
     .navbar:active {
       background: #973608;

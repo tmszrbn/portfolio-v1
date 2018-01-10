@@ -2,6 +2,7 @@ const navItems = Array.from(document.querySelectorAll(`[href^="#"]`));
 let scrollEvent, lastBodyHeight, lastScroll, navY;
 const targets = [];
 const navH = document.querySelector(`nav`).offsetHeight;
+const classDefocused = `navbar__item--defocused`;
 
 const mapping = () => {
   targets.length = 0;
@@ -15,6 +16,7 @@ const mapping = () => {
     item.addEventListener(`click`, (event) => {
       event.preventDefault();
       scrollToTarget(targetY + 20, document.body.offsetHeight); // + 20 in order to prevent scrollspy from making selecting as active element above
+      document.querySelector(`.${classDefocused}`).classList.remove(classDefocused);
     });
     // make an array of [navItem, corresponding top and bottom of the element]
     targets.push([item, targetY, targetBottomY]);
@@ -23,6 +25,7 @@ const mapping = () => {
 };
 
 window.addEventListener(`scroll`, (e) => {
+  document.querySelector(`:focus`).classList.add(classDefocused);
   scrollspy(targets, pageYOffset, navH);
 });
 
