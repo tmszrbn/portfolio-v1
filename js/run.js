@@ -23,8 +23,7 @@ const mapping = () => {
 };
 
 window.addEventListener(`scroll`, (e) => {
-  scrollEvent = e; // for smoothScroll
-  scrollspy(targets, e.pageY, navH);
+  scrollspy(targets, pageYOffset, navH);
 });
 
 const widthInterval = setInterval(() => {
@@ -35,7 +34,7 @@ const widthInterval = setInterval(() => {
   }
 
   // hide navbar if user scrolls down
-  const currScroll = scrollEvent ? scrollEvent.pageY : 0;
+  const currScroll = pageYOffset;
   const $nav = document.querySelector(`nav`);
   const navHideClass = `navbar--hidden`;
   if (navY < currScroll) {

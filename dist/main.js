@@ -23,8 +23,7 @@ const mapping = () => {
 };
 
 window.addEventListener(`scroll`, (e) => {
-  scrollEvent = e; // for smoothScroll
-  scrollspy(targets, e.pageY, navH);
+  scrollspy(targets, pageYOffset, navH);
 });
 
 const widthInterval = setInterval(() => {
@@ -35,7 +34,7 @@ const widthInterval = setInterval(() => {
   }
 
   // hide navbar if user scrolls down
-  const currScroll = scrollEvent ? scrollEvent.pageY : 0;
+  const currScroll = pageYOffset;
   const $nav = document.querySelector(`nav`);
   const navHideClass = `navbar--hidden`;
   if (navY < currScroll) {
@@ -47,15 +46,14 @@ const widthInterval = setInterval(() => {
   }
 }, 500);
 
-/*global scrollEvent*/
 let currItem; // must be global so the recursion in smoothScroll will stop when scrollToTarget() called while running
 
-const smoothScroll = (targetY, pageH, speed=3) => {
-  const currentScroll = (scrollEvent) ? scrollEvent.pageY : 0;
+const smoothScroll = (targetY, pageH, speed=100) => {
+  const currentScroll = pageYOffset;
   const distance = Math.abs(currentScroll-targetY);
   // computing step could be a function,
   // so it could be used with more optional arguments than just speed
-  let step = Math.ceil(distance/pageH*speed)+speed;
+  let step = Math.ceil(distance/pageH*speed)+speed*.03;
   // stop recursion if scrollToTarget() called again
   if (currItem == targetY && step < distance) {
     if (currentScroll > targetY+step) {
@@ -82,7 +80,6 @@ const scrollToTarget = (targetY, pageH) => {
   smoothScroll(targetY, pageH);
 };
 
-/*global scrollEvent navItems targets*/
 let active;
 const scrollspy = (targets, pageY, navH=0, activeClass=`navbar__item--active`) => {
   if (pageY + innerHeight >= lastBodyHeight) {

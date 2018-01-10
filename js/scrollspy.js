@@ -1,4 +1,3 @@
-/*global scrollEvent navItems targets*/
 let active;
 const scrollspy = (targets, pageY, navH=0, activeClass=`navbar__item--active`) => {
   if (pageY + innerHeight >= lastBodyHeight) {
