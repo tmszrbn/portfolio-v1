@@ -50,12 +50,12 @@ const widthInterval = setInterval(() => {
 /*global scrollEvent*/
 let currItem; // must be global so the recursion in smoothScroll will stop when scrollToTarget() called while running
 
-const smoothScroll = (targetY, pageH, speed=100) => {
+const smoothScroll = (targetY, pageH, speed=3) => {
   const currentScroll = (scrollEvent) ? scrollEvent.pageY : 0;
   const distance = Math.abs(currentScroll-targetY);
   // computing step could be a function,
   // so it could be used with more optional arguments than just speed
-  let step = Math.ceil(distance/pageH*speed)+speed*.03;
+  let step = Math.ceil(distance/pageH*speed)+speed;
   // stop recursion if scrollToTarget() called again
   if (currItem == targetY && step < distance) {
     if (currentScroll > targetY+step) {
