@@ -77,7 +77,7 @@ footer {
     height: 100%;
     color: inherit;
 
-    &:hover, &:focus{
+    &:hover{
       background: $colorA;
       color: $colorAd2;
       transform: scale(1.5);
@@ -97,7 +97,7 @@ footer {
 
     &--active {
       color: $colorAl1;
-      &:hover, &:focus {
+      &:hover {
         background: $colorAd2;
         color: $colorAl1;
       }
@@ -107,9 +107,6 @@ footer {
           color: $colorAl1;
         }
       }
-    }
-    &--defocused:focus {
-      transform: scale(1);
     }
   }
 
