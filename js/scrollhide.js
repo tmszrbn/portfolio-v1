@@ -1,4 +1,4 @@
-const scrollhide = (element, lastScroll, currentScroll, className, isHidden) => {
+const scrollhide = (lastScroll, currentScroll, isHidden, element=document.querySelector(`nav`), className=`navbar--hidden`) => {
   if (lastScroll != currentScroll) {
     if (isHidden) {
       lastScroll > currentScroll ? element.classList.remove(className) : null;

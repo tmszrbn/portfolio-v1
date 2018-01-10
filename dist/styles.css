@@ -44,10 +44,10 @@ td, th {
 ***FONTS***
 ******/
 h1 {
-  font-size: 5rem; }
+  font-size: 4rem; }
 
 h2 {
-  font-size: 3.5rem; }
+  font-size: 2.5rem; }
 
 /******
 ***FONT-AWESOME***
@@ -85,7 +85,7 @@ footer {
           align-items: center;
   font-size: 3.5rem; }
 
-.links {
+.navbar {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -105,7 +105,7 @@ footer {
   z-index: 1;
   -webkit-transition: all .3s ease-in;
   transition: all .3s ease-in; }
-  .links__list {
+  .navbar__list {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -114,40 +114,50 @@ footer {
     -ms-flex-pack: distribute;
         justify-content: space-around;
     overflow: hidden; }
-  .links__item {
+  .navbar__item {
     display: inline-block;
     color: #973608;
     text-decoration: none;
     -webkit-transition: all .3s ease-in;
     transition: all .3s ease-in;
     border-radius: 50px;
-    cursor: pointer;
     padding: 20px 10px;
     width: 100%;
     height: 100%;
     color: inherit; }
-    .links__item:hover, .links__item:focus, .links__item:active {
+    .navbar__item:hover, .navbar__item:focus {
       background: #973608;
       color: #361303;
       -webkit-transform: scale(1.5);
               transform: scale(1.5); }
-    .links__item--active {
-      color: #c7470b; }
-      .links__item--active:hover, .links__item--active:focus, .links__item--active:active {
-        background: #361303;
-        color: #c7470b;
+    @media (pointer: none) {
+      .navbar__item:active {
+        background: #973608;
+        color: #361303;
         -webkit-transform: scale(1.5);
-                transform: scale(1.5);
-        -webkit-transition: all .5s ease-in;
-        transition: all .5s ease-in; }
+                transform: scale(1.5); } }
+  @media (pointer: none) and (max-width: 370px) {
+    .navbar__item:active {
+      -webkit-transform: scale(1.2);
+              transform: scale(1.2); } }
+    .navbar__item--active {
+      color: #c7470b; }
+      .navbar__item--active:hover, .navbar__item--active:focus {
+        background: #361303;
+        color: #c7470b; }
+      @media (pointer: none) {
+        .navbar__item--active:active {
+          background: #361303;
+          color: #c7470b; } }
   @media (max-width: 480px) {
-    .links:active {
+    .navbar:active {
       background: #973608;
       color: #361303;
       -webkit-transform: scale(1.5);
-              transform: scale(1.5); }
-    .links--hidden {
-      opacity: 0.3; } }
+              transform: scale(1.5); } }
+  @media (max-height: 550px) {
+    .navbar--hidden {
+      opacity: 0.5; } }
 
 .content {
   line-height: 1.5rem;
@@ -163,14 +173,9 @@ footer {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  width: 100%;
-  padding: 1rem; }
+  padding: 1rem;
+  max-width: 100vw; }
   .content__part {
-    border: 5px solid #672505;
-    padding: 10px;
-    margin: 10px;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -178,22 +183,34 @@ footer {
     -webkit-box-direction: normal;
         -ms-flex-flow: column;
             flex-flow: column;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 400px;
+            flex: 0 1 400px;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    max-width: 400px; }
+    border: 5px solid #672505;
+    padding: 10px;
+    margin: 10px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box; }
   .content__title {
     width: 100%;
     padding: 1.5rem 0 2rem; }
-
-.svg-logo {
-  height: 170px;
-  margin: auto; }
-  .svg-logo:hover {
-    -webkit-transform: scale(1.2);
-            transform: scale(1.2); }
 
 .contact {
   text-decoration: none;
   color: inherit;
   padding-left: 0.5rem; }
+
+/* https://github.com/h5bp/html5-boilerplate/blob/f888d9611b1743d3f0fcb98956ca04fa22746315/dist/css/main.css#L135-L145 */
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap; }

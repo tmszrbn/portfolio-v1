@@ -1,9 +1,7 @@
 const navItems = Array.from(document.querySelectorAll(`[href^="#"]`));
-let scrollEvent;
-let lastBodyHeight;
-let lastScroll;
+let scrollEvent, lastBodyHeight, lastScroll, navY;
 const targets = [];
-let navY;
+const navH = document.querySelector(`nav`).offsetHeight;
 
 const mapping = () => {
   targets.length = 0;
@@ -11,12 +9,12 @@ const mapping = () => {
     // add smoothScroll to onclick event to all navigation links
     const itemTargetId = item.getAttribute(`href`);
     const itemTarget = document.querySelector(itemTargetId); // h4 element
-    const targetY = itemTarget.offsetTop;
-    const targetBottomY = itemTarget.parentElement.offsetTop + itemTarget.parentElement.offsetHeight;
+    const targetY = itemTarget.offsetTop - itemTarget.offsetHeight;
+    const targetBottomY = itemTarget.parentElement.offsetTop + itemTarget.parentElement.offsetHeight - 20;
 
     item.addEventListener(`click`, (event) => {
       event.preventDefault();
-      scrollToTarget(targetY, document.body.offsetHeight);
+      scrollToTarget(targetY + 20, document.body.offsetHeight); // + 20 in order to prevent scrollspy from making selecting as active element above
     });
     // make an array of [navItem, corresponding top and bottom of the element]
     targets.push([item, targetY, targetBottomY]);
@@ -25,26 +23,27 @@ const mapping = () => {
 };
 
 window.addEventListener(`scroll`, (e) => {
-  scrollEvent = e; // has to be for smoothScroll
-  scrollspy(targets, e.pageY);
+  scrollEvent = e; // for smoothScroll
+  scrollspy(targets, e.pageY, navH);
 });
 
-
 const widthInterval = setInterval(() => {
+  // check if the width has changed
   if (lastBodyHeight != document.body.offsetHeight) {
     lastBodyHeight = document.body.offsetHeight;
     mapping();
   }
 
+  // hide navbar if user scrolls down
   const currScroll = scrollEvent ? scrollEvent.pageY : 0;
-  const elementToHide = document.querySelector(`nav`);
-  const navHideClass = `links--hidden`;
+  const $nav = document.querySelector(`nav`);
+  const navHideClass = `navbar--hidden`;
   if (navY < currScroll) {
-    const navHidden = elementToHide.classList.contains(navHideClass);
-    scrollhide(elementToHide, lastScroll, currScroll, navHideClass, navHidden);
+    const navHidden = $nav.classList.contains(navHideClass);
+    scrollhide(lastScroll, currScroll, navHidden);
     lastScroll = currScroll;
-  } else if (elementToHide.classList.contains(navHideClass)) {
-    elementToHide.classList.remove(navHideClass)
+  } else if ($nav.classList.contains(navHideClass)) {
+    $nav.classList.remove(navHideClass);
   }
 }, 500);
 
@@ -56,7 +55,7 @@ const smoothScroll = (targetY, pageH, speed=100) => {
   const distance = Math.abs(currentScroll-targetY);
   // computing step could be a function,
   // so it could be used with more optional arguments than just speed
-  let step = Math.ceil(distance/pageH*speed)+speed*.04;
+  let step = Math.ceil(distance/pageH*speed)+speed*.03;
   // stop recursion if scrollToTarget() called again
   if (currItem == targetY && step < distance) {
     if (currentScroll > targetY+step) {
@@ -85,29 +84,29 @@ const scrollToTarget = (targetY, pageH) => {
 
 /*global scrollEvent navItems targets*/
 let active;
-const scrollspy = (targets, pageY) => {
-  if (pageY + innerHeight >= lastBodyHeight-10) {
-    active ? active.classList.remove(`links__item--active`) : null;
+const scrollspy = (targets, pageY, navH=0, activeClass=`navbar__item--active`) => {
+  if (pageY + innerHeight >= lastBodyHeight) {
+    active ? active.classList.remove(activeClass) : null;
     active = targets[targets.length-1][0];
-    active.classList.add(`links__item--active`);
+    active.classList.add(activeClass);
   }
   else if (pageY > document.querySelector(`header`).offsetHeight){
     for (let target of targets) {
-      if (!target[0].classList.contains(`links__item--active`)) {
-        if (target[1] < pageY && target[2] > pageY) {
-          active ? active.classList.remove(`links__item--active`) : null;
+      if (!target[0].classList.contains(activeClass)) {
+        if (target[1] < pageY && target[2] > pageY + navH) {
+          active ? active.classList.remove(activeClass) : null;
           active = target[0];
-          active.classList.add(`links__item--active`);
+          active.classList.add(activeClass);
           break;
         }
       }
     }
   } else if (active) {
-    active.classList.remove(`links__item--active`);
+    active.classList.remove(activeClass);
   }
 };
 
-const scrollhide = (element, lastScroll, currentScroll, className, isHidden) => {
+const scrollhide = (lastScroll, currentScroll, isHidden, element=document.querySelector(`nav`), className=`navbar--hidden`) => {
   if (lastScroll != currentScroll) {
     if (isHidden) {
       lastScroll > currentScroll ? element.classList.remove(className) : null;
